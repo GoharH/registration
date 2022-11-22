@@ -102,7 +102,7 @@ class UserRegister extends React.Component {
                         <label >Name
                             <input name="firstName" value={formData.firstName}
                                 onChange={this.onChangeInput}
-                                className={`'firstName' ${errorData.firstName ? 'error-input firstName' : ''}`}  // nor greladzev
+                                className={`firstName ${errorData.firstName ? 'error-input firstName' : ''}`}  // nor greladzev
                                 type="text" placeholder="First Name"
                             />
                             {errorData.firstName ? <p>{errorData.firstName}</p> : null}
