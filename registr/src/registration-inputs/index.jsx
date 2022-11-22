@@ -59,7 +59,7 @@ class UserRegister extends React.Component {
         }
         if (!formData.email.trim().length) {
             newErrorData.email = 'Fill an Email'
-        } else if (validMail.test(formData.email) === false) {
+        } else if (!validMail.test(formData.email)) {
             newErrorData.email = 'Fill a correct Email'
         }
 
@@ -71,7 +71,8 @@ class UserRegister extends React.Component {
         }
         if (!formData.password.trim().length) {
             newErrorData.password = 'Fill a password'
-        } else if (formData.password.trim().length < 8) {
+        }
+        if (formData.password.trim().length && formData.password.trim().length < 8) {
             newErrorData.password = 'Fill a password with 8 symbol'
         }
         if (!formData.confirmPassword.trim().length) {
@@ -100,42 +101,43 @@ class UserRegister extends React.Component {
                         name, value, placeholder, onCHange, className, type                                   */}
                         <label >Name
                             <input name="firstName" value={formData.firstName}
-                                onChange={this.onChangeInput} className={`${errorData.firstName ? 'error-input firstName' : 'firstName'}`} type="text"
-                                placeholder="First Name"
+                                onChange={this.onChangeInput}
+                                className={`'firstName' ${errorData.firstName ? 'error-input firstName' : ''}`}  // nor greladzev
+                                type="text" placeholder="First Name"
                             />
                             {errorData.firstName ? <p>{errorData.firstName}</p> : null}
                         </label>
                         <label >
                             <input name="lastName" value={formData.lastName}
-                                onChange={this.onChangeInput} className={`${errorData.firstName ? 'error-input lastName' : 'lastName'}`} type="text" placeholder="Last Name" />
+                                onChange={this.onChangeInput} className={`${errorData.lastName ? 'error-input lastName' : 'lastName'}`} type="text" placeholder="Last Name" />
                             {errorData.lastName ? <p>{errorData.lastName}</p> : null}
                         </label>
                     </div>
                     <label > Company
                         <input name="company" value={formData.company}
-                            onChange={this.onChangeInput} type="text" className={`${errorData.firstName ? 'error-input ' : null}`} />
+                            onChange={this.onChangeInput} type="text" className={`${errorData.company ? 'error-input ' : null}`} />
                         {errorData.company ? <p>{errorData.company}</p> : null}
                     </label>
                     <label > Email
-                        <input name="email" onChange={this.onChangeInput} value={formData.email} className={`${errorData.firstName ? 'error-input ' : null}`} type="email" />
+                        <input name="email" onChange={this.onChangeInput} value={formData.email} className={`${errorData.email ? 'error-input ' : null}`} type="email" />
                         {errorData.email ? <p>{errorData.email}</p> : null}
                     </label>
                     <div className="G-flex">
                         <label > Phone
-                            <input name="phoneCode" onChange={this.onChangeInput} value={formData.phoneCode} className={`${errorData.firstName ? 'error-input phoneCode' : 'phoneCode'}`} type="number" placeholder="Area Code" />
+                            <input name="phoneCode" onChange={this.onChangeInput} value={formData.phoneCode} className={`${errorData.phoneCode ? 'error-input phoneCode' : 'phoneCode'}`} type="number" placeholder="Area Code" />
                             {errorData.phoneCode ? <p>{errorData.phoneCode}</p> : null}
                         </label>
                         <label >
-                            <input name="phoneNum" onChange={this.onChangeInput} className={`${errorData.firstName ? 'error-input phoneNum' : 'phoneNum'}`} value={formData.phoneNum} type="number" placeholder="Phone Number" />
+                            <input name="phoneNum" onChange={this.onChangeInput} className={`${errorData.phoneNum ? 'error-input phoneNum' : 'phoneNum'}`} value={formData.phoneNum} type="number" placeholder="Phone Number" />
                             {errorData.phoneNum ? <p>{errorData.phoneNum}</p> : null}
                         </label>
                     </div>
                     <label > Password
-                        <input name="password" onChange={this.onChangeInput} value={formData.password} className={`${errorData.firstName ? 'error-input ' : null}`} type="password" />
+                        <input name="password" onChange={this.onChangeInput} value={formData.password} className={`${errorData.password ? 'error-input ' : null}`} type="password" />
                         {errorData.password ? <p>{errorData.password}</p> : null}
                     </label>
                     <label > Confirm Password
-                        <input name="confirmPassword" onChange={this.onChangeInput} value={formData.confirmPassword} className={`${errorData.firstName ? 'error-input ' : null}`} type="password" />
+                        <input name="confirmPassword" onChange={this.onChangeInput} value={formData.confirmPassword} className={`${errorData.confirmPassword ? 'error-input ' : null}`} type="password" />
                         {errorData.confirmPassword ? <p>{errorData.confirmPassword}</p> : null}
                     </label>
                     <div className="radio-input-part">
